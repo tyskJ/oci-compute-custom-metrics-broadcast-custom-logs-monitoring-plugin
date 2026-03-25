@@ -29,7 +29,9 @@ Linux
 * ``Socket`` ファイル起動とするため、``socket`` ファイルを作成 (あえて)
 
 **/etc/systemd/system/node_exporter.socket**
-::
+
+.. code-block:: bash
+
   [Unit]
   # このソケットユニットの説明（systemctl status で表示される）
   Description=Node Exporter
