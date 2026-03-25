@@ -29,26 +29,26 @@ Linux
 * ``Socket`` ファイル起動とするため、``socket`` ファイルを作成 (あえて)
 
 .. code-block:: bash
-  :caption: /etc/systemd/system/node_exporter.socket
+    :caption: /etc/systemd/system/node_exporter.socket
 
-  [Unit]
-  # このソケットユニットの説明（systemctl status で表示される）
-  Description=Node Exporter
+    [Unit]
+    # このソケットユニットの説明（systemctl status で表示される）
+    Description=Node Exporter
 
-  [Socket]
-  # TCPポート9100番(デフォルト)で待ち受けする設定
-  # systemd自身がこのポートをlistenする（node_exporterではない）
-  # 接続が来たタイミングで対応する .service を起動する（socket activation）
-  ListenStream=9100
+    [Socket]
+    # TCPポート9100番(デフォルト)で待ち受けする設定
+    # systemd自身がこのポートをlistenする（node_exporterではない）
+    # 接続が来たタイミングで対応する .service を起動する（socket activation）
+    ListenStream=9100
 
-  # （補足）
-  # ListenStream は TCP 用
-  # UNIXソケットの場合は ListenStream=/path/to/socket も指定可能
+    # （補足）
+    # ListenStream は TCP 用
+    # UNIXソケットの場合は ListenStream=/path/to/socket も指定可能
 
-  [Install]
-  # sockets.target が起動するタイミングでこのソケットを有効化する
-  # → systemctl enable すると OS起動時に自動でlisten開始される
-  WantedBy=sockets.target
+    [Install]
+    # sockets.target が起動するタイミングでこのソケットを有効化する
+    # → systemctl enable すると OS起動時に自動でlisten開始される
+    WantedBy=sockets.target
 
 
 
